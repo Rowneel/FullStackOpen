@@ -4,6 +4,7 @@ import express from "express";
 import morgan from "morgan";
 import { tinyWithBody } from "./middlewares.js/morgan.js";
 import { requestLogger } from "./middlewares.js/requestLogger.js";
+import { unknownEndpoint } from "./middlewares.js/unknownEndpoint.js";
 import { generateId } from "./utils/generateId.js";
 dotenv.config();
 const app = express();
@@ -79,6 +80,8 @@ app.delete("/api/persons/:id", (req, res) => {
     return res.status(404).json({ error: "Person Not Found" });
   res.status(204).end();
 });
+
+app.use(unknownEndpoint);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
