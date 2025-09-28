@@ -1,11 +1,15 @@
+import cors from "cors";
+import dotenv from "dotenv";
 import express from "express";
 import morgan from "morgan";
 import { tinyWithBody } from "./middlewares.js/morgan.js";
 import { requestLogger } from "./middlewares.js/requestLogger.js";
 import { generateId } from "./utils/generateId.js";
+dotenv.config();
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 app.use(requestLogger);
 app.use(morgan(tinyWithBody));
 
@@ -76,7 +80,7 @@ app.delete("/api/persons/:id", (req, res) => {
   res.status(204).end();
 });
 
-const PORT = 3001;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
