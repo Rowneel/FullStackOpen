@@ -78,8 +78,11 @@ app.delete("/api/persons/:id", (req, res) => {
   const personToDelete = persons.find((p) => p.id === id);
   if (!personToDelete)
     return res.status(404).json({ error: "Person Not Found" });
+  persons = persons.filter((p) => p.id !== id);
   res.status(204).end();
 });
+
+app.use(express.static("dist"));
 
 app.use(unknownEndpoint);
 
