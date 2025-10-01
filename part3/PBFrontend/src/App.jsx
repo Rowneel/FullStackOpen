@@ -26,7 +26,7 @@ const App = () => {
       })
       .catch((err) => {
         console.log("err", err);
-        setError(err?.response?.data);
+        setError(err?.response?.data?.error);
         setTimeout(() => {
           setError("");
         }, 3000);
@@ -62,7 +62,7 @@ const App = () => {
           setNewName("");
         })
         .catch((err) => {
-          setError(err?.response?.data);
+          setError(err?.response?.data?.error);
           setTimeout(() => {
             setError("");
           }, 3000);
@@ -83,7 +83,7 @@ const App = () => {
         setNewPhone("");
       })
       .catch((err) => {
-        setError(err?.response?.data);
+        setError(err?.response?.data?.error);
         setTimeout(() => {
           setError("");
         }, 3000);
@@ -109,7 +109,7 @@ const App = () => {
             `Information of ${personToDelete?.name} is already removed from the server.`
           );
         } else {
-          setError(err?.response?.data);
+          setError(err?.response?.data?.error);
         }
         setTimeout(() => {
           setError("");
