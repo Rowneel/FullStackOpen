@@ -36,7 +36,7 @@ if (!name || !number) {
     });
 } else {
   const phoneBook = new PhoneBook({ name, number });
-  phoneBook.save().then((result) => {
+  phoneBook.save().then(() => {
     console.log(`added ${name} number ${number} to phonebook`);
     mongoose.connection.close();
   });
